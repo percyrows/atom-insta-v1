@@ -9,8 +9,42 @@ class Home extends Component {
     super(props)
     this.state ={
       image: null,
-      progressUpload: 0
+      progressUpload: 0,
+      posts: []
     }
+  }
+
+  componentDidMount = () => {
+    let postsRef = firebase.database().ref('posts')
+
+    postsRef.on("value", (snapshot) =>{
+      let posts = snapshot.val()
+      let newPosts= []
+
+      console.log(posts)
+    
+      for(let post in posts){
+        newPosts.push({
+          id: post,
+          content: posts[post].content,
+          photoUrl: posts[post].photoUrl
+        })
+      }
+        this.setState({
+        posts: newPosts
+      })   
+    })
+  }
+
+  addPost = () =>{
+    let posts = firebase.database().ref('posts')
+    let newPost = posts.push()
+
+    newPost.set({
+      content: `Hola ${new Date().toDateString()}`,
+      photoUrl: 'https://firebasestorage.googleapis.com/v0/b/atom-insta-v1.appspot.com/o/photos%2FSat%20Dec%2021%202019-AdobeStock_297515298.jpeg?alt=media&token=eaf04c84-06a4-451b-87b7-4075b76c92e5',
+      createdAt: new Date().toJSON()
+    })
   }
 
   handleChange = (e) =>{
@@ -57,7 +91,8 @@ class Home extends Component {
 
       let{
         image,
-        progressUpload
+        progressUpload,
+        posts
       } = this.state
 
 
@@ -70,6 +105,13 @@ class Home extends Component {
         color="white"
         onLoaderFinished={this.restartProgressBar}
         />
+
+        <button
+        onClick={this.addPost}
+        >
+          New Post
+        </button>
+
 
           
           <div className="file has-name">
@@ -95,6 +137,19 @@ class Home extends Component {
               }
             </label>
           </div>
+
+         <div className="columns is-multiline">
+         {
+            posts.map(l =>{
+              return(
+                <div key={l.id} className="column is-4">
+                  <img src={l.photoUrl} />
+                </div>
+              )
+            })
+          }
+         </div>
+
         </div>
       );
     }
