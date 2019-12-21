@@ -12,6 +12,10 @@ import {
 import Login from './pages/login'
 import Home from './pages/home'
 
+//componentes
+
+import Layout from './components/layout'
+
 
   let firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -59,21 +63,21 @@ class App extends Component {
   
   render() {
     return ( 
-      <div className="container">
        <Router>
-          <Switch>
-            <Route
-              path="/"
-              exact
-              component={Login}
-            />
-            <Route
-              path="/home"
-              component={Home} />
-          </Switch>
-      </Router>
-
-      </div>)
+         <Layout>
+            <Switch>
+              <Route
+                path="/"
+                exact
+                component={Login}
+              />
+              <Route
+                path="/home"
+                component={Home} 
+              />
+            </Switch>
+          </Layout>
+      </Router> )
   }
 }
 
