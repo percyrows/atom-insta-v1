@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import firebase from 'firebase'
 import 'bulma/css/bulma.css'
-import './App.css';
+import './App.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 import {
   BrowserRouter as Router, 
