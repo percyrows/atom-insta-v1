@@ -45,26 +45,8 @@ class Navbar extends Component {
 
       <div id="navbarBasicExample"
         className={`navbar-menu ${collapsed ? 'is-active' : ''}`}>
-        <div className="navbar-start">
-        <Link to="/" className="navbar-item">
-            Tabla
-            </Link>
-
-          <Link to="/modal" className="navbar-item">
-            Modal
-            </Link>
-
-          <Link to="/tabs" className="navbar-item">
-            Tabs
-            </Link>
-
-        </div>
-
         <div className="navbar-end">
           <div className="navbar-item">
-            <div className="buttons">
-                <NewPost />
-            </div>
           </div>
         </div>
       </div>
