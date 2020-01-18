@@ -10,7 +10,6 @@ class Post extends Component {
     super(props)
     this.state = {
     image: null,
-    progressUpload: 0,
     loading: false,
     posts: [],
       classNameModal: '',
@@ -136,12 +135,6 @@ class Post extends Component {
       })
   }
 
-
-
-
-
-
-
   restartProgressBar = () =>{
     this.setState({
       progressUpload: 0
@@ -154,9 +147,6 @@ class Post extends Component {
       classNameModal,
       formData,
       errorForm,
-      progressUpload,
-      posts,
-      loaging
     } = this.state
 
     return (
@@ -210,7 +200,6 @@ class Post extends Component {
                   className="file-input"
                   type="file"
                   name="image"
-                  onChange={this.handleChange}
                 />
                 <span className="file-cta">
                   <span className="file-icon">

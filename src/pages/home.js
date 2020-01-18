@@ -41,16 +41,21 @@ class Home extends Component {
 
       return (
         <div>
-          Wellcome
-          <Post/>
-        {
-          posts.map((p,i)=>{
-            return <PostCard
-            post={p}
-            key={i}
-            />
-          })
-        }
+            Wellcome
+            <Post/>
+
+            <div className="columns">
+              <div className="column is-half is-offset-one-quarter">
+            {
+              posts.map((p,i)=>{
+                return <PostCard
+                post={p}
+                key={i}
+                />
+              })
+            }
+            </div>
+          </div>
         </div>
       )
     }

@@ -9,3 +9,17 @@
 body{
   background-color: #E7EBDA;
 }
+
+.card{
+  margin: 3rem 0;
+}
+
+.is-vertical-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fields-comments{
+  width: 100% !important;
+}
