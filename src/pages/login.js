@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
+import { toast } from 'react-toastify'
 import firebase from 'firebase'
+import store from '../tree'
 
 
 class Login extends Component {
@@ -7,7 +9,7 @@ class Login extends Component {
     constructor(props){
       super(props)
       this.state={
-          loading: true
+          loading: true,
       }
     }
   
@@ -19,13 +21,20 @@ class Login extends Component {
 
           let user = firebase.database().ref(`users/${data.user.uid}`)
 
-          user.set({
+          let userFormat ={
+            id: data.user.uid,
             displayName: data.user.displayName,
             photoURL: data.user.photoURL
-          })
+          }
+
+
+          user.set(userFormat)
+          window.localStorage.setItem('user', JSON.stringify(userFormat))
+          store.set ("user", userFormat)
+          store.commit()
 
             let{
-                history
+                history,
             } = this.props
         history.push('/home')
         }
@@ -33,8 +42,18 @@ class Login extends Component {
             this.setState({
                 loading: false
             })
+            
         }
       }catch (error){
+        this.setState({
+          loading:false
+        })
+        toast.error(
+          `Error: ${error.message}`,
+          {
+            position: toast.POSITION.TOP_RIGHT
+          }
+        )
         console.error(error)
       }
     }
@@ -77,7 +96,9 @@ class Login extends Component {
         }
       return ( <div className="columns">
           <div className="column is-8">
-              <img src="/insta-login.jpg"></img>
+              <img 
+              alt=""
+              src="/insta-login.jpg"></img>
               </div>
          <div className="column">
          <h1 className="title is-1 has-text-centered italic-font main-title">

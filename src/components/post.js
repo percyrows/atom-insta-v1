@@ -3,6 +3,7 @@ import Modal from './modal'
 import firebase from 'firebase'
 import { toast } from 'react-toastify'
 import uuid from 'uuid/v1'
+import tree from '../tree'
 
 class Post extends Component {
 
@@ -14,6 +15,7 @@ class Post extends Component {
     posts: [],
       classNameModal: '',
       errorForm: false,
+      user: tree.get("user"),
       formData: {
         content:'',
         image: ''
@@ -112,7 +114,8 @@ class Post extends Component {
   handleCreatePost =(url) =>{
     //crear post con la url
     let{
-      formData: {content}
+      formData: {content},
+      user
     }= this.state
 
     let posts = firebase.database().ref('posts')
@@ -121,7 +124,7 @@ class Post extends Component {
     newPost.set({
       content,
       photoURL: url,
-      authorId: 'yXGJRg9tHoWTqmX8KwDOWdtNtNh2',
+      authorId: user.id,
       createdAt: new Date().toJSON()
     })
 

@@ -41,8 +41,12 @@ class Home extends Component {
 
       return (
         <div>
-            Wellcome
+          <div 
+            className="container-new-post"
+          >
             <Post/>
+            
+          </div>
 
             <div className="columns">
               <div className="column is-half is-offset-one-quarter">

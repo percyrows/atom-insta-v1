@@ -18,6 +18,11 @@ import Home from './pages/home'
 
 import Layout from './components/layout'
 
+//baobab
+
+import {root} from 'baobab-react/higher-order'
+import store from './tree'
+
 
 let firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -83,4 +88,6 @@ class App extends Component {
   }
 }
 
-export default App;
+const RootedApp = root(store, App)
+
+export default RootedApp;
