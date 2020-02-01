@@ -1,5 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component, useReducer } from 'react'
 import { Link } from 'react-router-dom'
+import firebase from 'firebase'
+import tree from '../tree'
+import {withRouter} from 'react-router-dom'
 
 
 class Navbar extends Component {
@@ -15,7 +18,25 @@ class Navbar extends Component {
     })
   }
 
+  handleLogout = () =>{
+    firebase.auth().signOut()
+    .then(()=>{
+      tree.set('user', null)
+      tree.commit()
+      window.localStorage.clear()
+      this.props.callback()
+      this.props.history.push('/')
+    })
+    .catch((error) =>{
+      console.log(error)
+    })
+  }
+
   render () {
+    
+    let{
+      userLogged
+    }= this.props
 
     let {
       collapsed
@@ -44,13 +65,26 @@ class Navbar extends Component {
 
       <div id="navbarBasicExample"
         className={`navbar-menu ${collapsed ? 'is-active' : ''}`}>
+
+
+        <div className="navbar-sart" />
+
         <div className="navbar-end">
-          <div className="navbar-item">
+
+          {
+            userLogged && <div className="navbar-item">
+            <button className="button is-primary is-inverted is-outlined" onClick={this.handleLogout}>
+              Salir  
+            </button>
+
           </div>
+
+          }
+
         </div>
       </div>
     </nav>)
   }
 }
 
-export default Navbar
+export default withRouter (Navbar)

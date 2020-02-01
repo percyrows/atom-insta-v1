@@ -30,13 +30,13 @@ class Login extends Component {
 
           user.set(userFormat)
           window.localStorage.setItem('user', JSON.stringify(userFormat))
+          
           store.set ("user", userFormat)
           store.commit()
 
-            let{
-                history,
-            } = this.props
-        history.push('/home')
+
+          this.props.callback(userFormat)
+
         }
         else{
             this.setState({

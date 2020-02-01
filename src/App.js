@@ -69,13 +69,13 @@ class App extends Component {
       <Router>
         <Layout>
           <Switch>
-            <Route
+            {/*<Route
               path="/"
               exact
               component={Login}
-            />
+            />*/}
             <Route
-              path="/home"
+              path="/"
               component={Home}
             />
             <Route
