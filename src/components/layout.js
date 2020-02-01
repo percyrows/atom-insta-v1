@@ -39,7 +39,7 @@ class Layout extends Component {
                 <div className="container">
                     <div className="section">
                     {
-                    user ? children : <Login callback={this.stateLoggedChange} />
+                    children
                     }
                     </div>
                 </div>
