@@ -76,9 +76,7 @@ class Navbar extends Component {
             <button className="button is-primary is-inverted is-outlined" onClick={this.handleLogout}>
               Salir  
             </button>
-
           </div>
-
           }
 
         </div>

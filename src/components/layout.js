@@ -33,7 +33,7 @@ class Layout extends Component {
             <div>
                 <ToastContainer/>
                 <Navbar
-                usesLogged={!!user}
+                userLogged={!!user}
                 callback={this.stateLoggedChange}
                 />
                 <div className="container">

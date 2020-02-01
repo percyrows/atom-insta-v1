@@ -136,6 +136,15 @@ class PostCard extends Component {
         </figure>
       </div>
 
+      <div className="footer-image is-vertical-center">
+        <p>
+        {
+          post.content
+        }
+        </p>
+      
+      </div>
+
       <div className="card-footer">
         <form
           onSubmit={this.handleSubmit}
